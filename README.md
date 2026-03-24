@@ -14,11 +14,13 @@ PHP 8.x / MySQL / JavaScript / CSS (Flexbox) / XAMPP
 
 **こだわった点**
 SQLクエリによるデータ集約、レスポンシブデザイン
+初めてCRUD機能全てを集約したアプリケーションです。
 
 
 ## ER図
 <img width="891" height="241" alt="勤怠管理ER drawio" src="https://github.com/user-attachments/assets/cf154653-86f0-450f-97a7-e31612cf9977" />
 
 ## フロー図
-<img width="3198" height="1480" alt="_フローチャート (2)" src="https://github.com/user-attachments/assets/a62a7198-ca74-4e75-8d92-23c2fa0d47a7" />
+<img width="3198" height="1740" alt="_フローチャート (3)" src="https://github.com/user-attachments/assets/0a66a537-2f79-4889-aa74-e9eb8b5a0498" />
+
 
