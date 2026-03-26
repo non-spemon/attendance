@@ -51,7 +51,7 @@ try {
 <body>
     <div class="head">
         <h1>スタッフ管理一覧</h1>
-        <a href="admin_dashbord.php" class="cancel" style="background:#6c757d;">ダッシュボードへ戻る</a>
+        <a href="admin_dashboard.php" class="cancel" style="background:#6c757d;">ダッシュボードへ戻る</a>
         <a class="insert_btn" href="user_register.php">新規登録</a>
     </div>
     <div class="table-container">

@@ -23,7 +23,7 @@ try {
 
     // 4. 完了したら管理者ダッシュボードに戻る
     // メッセージを付けておくと親切です
-    header('Location: admin_dashbord.php?message=deleted');
+    header('Location: admin_dashboard.php?message=deleted');
     exit;
 
 } catch (PDOException $e) {

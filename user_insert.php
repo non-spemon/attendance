@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':role' => $role
         ]);
 
-        header('Location: admin_dashbord.php?message=user_added');
+        header('Location: admin_dashboard.php?message=user_added');
         exit;
 
     } catch (PDOException $e) {

@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdo->commit(); // すべて成功したら確定
 
         // ダッシュボードへ戻る
-        header('Location: admin_dashbord.php?message=success');
+        header('Location: admin_dashboard.php?message=success');
         exit;
 
     } catch (Exception $e) {

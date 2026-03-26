@@ -82,7 +82,7 @@ try {
 
         <br>
         <button class="update" type="submit">更新する</button>
-        <a class="cancel" href="admin_dashbord.php">キャンセル</a>
+        <a class="cancel" href="admin_dashboard.php">キャンセル</a>
     </form>
 </div>
 </body>

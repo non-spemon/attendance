@@ -47,7 +47,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
             </div>
             <br>
             <button class="regist_btn" type="submit">登録する</button>
-            <a class="cancel" href="admin_dashbord.php">キャンセル</a>
+            <a class="cancel" href="admin_dashboard.php">キャンセル</a>
         </form>
     </div>
 </body>
