@@ -53,24 +53,18 @@ body {
 
 .login_btn {
     display: block; 
-    width: 100%;    
+    width: 120px;    
     padding: 12px;  
-    margin: 20px 0 0 0;
+    margin: 10px 8px;
     cursor: pointer;
-    
-    /* --- iPhone対策 --- */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    color: #ffffff; 
+    background-color: #808080; 
     border: none;      
     outline: none;     
     display: block;
-    width: 100%;
-    background-color: #808080; 
-    color: #ffffff;           
     padding: 15px 0;         
     font-size: 1.6rem;         
-    line-height: 1;            
+    line-height: 1; 
     text-align: center;
     border-radius: 5px;       
     margin-top: 20px;
@@ -86,6 +80,12 @@ body {
         margin: 20px auto;
     }
 }
+
+    .login_btn {
+        width: 15%;
+        height: auto;
+        padding: 10px 0;
+    }
 
 /*punch_screen.php*/
 .container_punch {
@@ -415,5 +415,12 @@ form input[type="datetime-local"] {
         margin-left: 0 !important;
         margin-bottom: 10px;
         padding: 0;
+    }
+
+    .login_btn {
+        width: 20%;
+        height: auto;
+        font-size: 1.3rem;
+        padding: 10px 8px;
     }
 }
