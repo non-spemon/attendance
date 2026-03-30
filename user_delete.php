@@ -9,18 +9,14 @@ $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
 if ($id > 0) {
     try {
         if ($id === (int)$_SESSION['user_id']) {
-            echo "<script>
-            alert('自分自身（ログイン中の管理者）を削除することはできません。');
-            window.location.href = 'user_list.php';
-            </script>";
+            header('Location: user_list.php');
             exit;
         }
 
-        // 【ここが重要！】トランザクションを開始します
+        // トランザクションを開始します
         $pdo->beginTransaction();
 
         // 1. まず、そのユーザーに紐付く「すべての」打刻履歴を削除する
-        // ※ LIMIT 1 を外さないと、1件しか消えずエラーになる可能性があります
         $sql_logs = "DELETE FROM attendance_logs WHERE user_id = :id";
         $stmt_logs = $pdo->prepare($sql_logs);
         $stmt_logs->execute([':id' => $id]);
