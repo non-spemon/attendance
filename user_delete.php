@@ -7,6 +7,7 @@ require_once 'auth_admin.php';
 $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
 
 if ($id > 0) {
+    // 文字列で送られてきた情報をintで数値化。ログインしているuser_idが$idと一致する場合（管理者）は削除不可とし、画面を戻す
     try {
         if ($id === (int)$_SESSION['user_id']) {
             header('Location: user_list.php');
