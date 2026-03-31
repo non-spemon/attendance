@@ -22,7 +22,6 @@ try {
     $stmt->execute([':id' => $id]);
 
     // 4. 完了したら管理者ダッシュボードに戻る
-    // メッセージを付けておくと親切です
     header('Location: admin_dashboard.php?message=deleted');
     exit;
 

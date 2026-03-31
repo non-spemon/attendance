@@ -33,7 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':role' => $role
         ]);
 
+<<<<<<< HEAD
         header('Location: admin_dashboard.php?message=user_added');
+=======
+        header('Location: admin_dashbord.php?message=user_added');
+>>>>>>> 599e144 (indexのスペル修正)
         exit;
 
     } catch (PDOException $e) {
