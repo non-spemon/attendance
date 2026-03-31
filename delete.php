@@ -1,24 +1,30 @@
 <?php
 session_start();
-//  データベース接続
 require_once 'db_connect.php';
 require_once 'auth_admin.php';
 
-//  URLからIDを取得
-$id = $_POST['id'] ?? null;
+// POSTで送られてきた「ユーザーID」と「日付」を取得
+$user_id = $_POST['user_id'] ?? null;
+$date = $_POST['date'] ?? null;
 
-if (!$id) {
-    exit('削除するIDが指定されていません。');
+// 両方のデータがない場合はエラー
+if (!$user_id || !$date) {
+    exit('削除に必要な情報が不足しています。');
 }
 
 try {
-    // データベースから削除を実行
-    // WHERE句を忘れると全データ消えるので注意！
-    $sql = "DELETE FROM attendance_logs WHERE id = :id";
+    // 【修正ポイント】
+    // 「特定のユーザー」の「特定の日付」のログをすべて削除するSQL
+    $sql = "DELETE FROM attendance_logs 
+            WHERE user_id = :user_id 
+            AND DATE(punched_at) = :date";
+            
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([':id' => $id]);
+    $stmt->execute([
+        ':user_id' => $user_id,
+        ':date'    => $date
+    ]);
 
-    // 4. 完了したら管理者ダッシュボードに戻る
     header('Location: admin_dashboard.php?message=deleted');
     exit;
 

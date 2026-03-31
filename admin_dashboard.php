@@ -100,7 +100,10 @@ try {
                 <td class="btn"> 
                     <a class="edit" href="edit.php?user_id=<?php echo $log['user_id']; ?>&date=<?php echo $log['打刻日']; ?>">編集</a>
                     <form action="delete.php" method="POST" style="display:inline;" onsubmit="return confirm('本当に削除してもよろしいですか？');">
-                        <input type="hidden" name="id" value="<?php echo $log['user_id']; ?>">
+                        <!-- user_id を送る -->
+                        <input type="hidden" name="user_id" value="<?php echo $log['user_id']; ?>">
+                        <!-- 打刻日（date）を送る -->
+                        <input type="hidden" name="date" value="<?php echo $log['打刻日']; ?>">
                         <button type="submit" class="delete">削除</button>
                     </form>
                 </td>
