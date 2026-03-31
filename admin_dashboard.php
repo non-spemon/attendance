@@ -34,13 +34,15 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>管理者画面</title>
-<<<<<<< HEAD
     <link rel="stylesheet" href="css/style.css">
-=======
-    <link rel="stylesheet" href="/css/style.css">
->>>>>>> b45a9b7 (admin_dashboard.phpスペル修正/CSS修正/auth_admin.phpの追加)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理者画面</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" href="img/favicon16.ico">
+    <link rel="shortcut icon" href="img/favicon32.ico">
+    <link rel="shortcut icon" href="img/favicon48.ico">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
@@ -57,23 +59,6 @@ try {
         <p>ようこそ <?php echo htmlspecialchars($_SESSION['user_name'] ?? '管理者'); ?>さん</p>
         <a class="user_btn" href="user_list.php">スタッフ一覧</a>
         <a class="logout_btn_d" href="logout.php">ログアウト</a>
-<<<<<<< HEAD
-        <form method="GET" action="admin_dashboard.php" class="search-form">
-            <select name="user_id">
-                <option value="">全てのスタッフ</option>
-                <!-- ここは本来、usersテーブルからループで出すのが理想です -->
-                <option value="1">スタッフA</option>
-                <option value="2">スタッフB</option>
-            </select>
-
-            <input type="month" name="target_month" value="<?php echo htmlspecialchars($_GET['target_month'] ?? date('Y-m')); ?>">
-
-            <button type="submit">絞り込み</button>
-            <a href="admin_dashboard.php">解除</a>
-        </form>
-        
-=======
->>>>>>> b45a9b7 (admin_dashboard.phpスペル修正/CSS修正/auth_admin.phpの追加)
     </div>
     <div class="table-container">
     <table >
@@ -114,9 +99,11 @@ try {
 
                 <td class="btn"> 
                     <a class="edit" href="edit.php?user_id=<?php echo $log['user_id']; ?>&date=<?php echo $log['打刻日']; ?>">編集</a>
-                    
-                    <a class="delete" href="delete.php?user_id=<?php echo $log['user_id']; ?>&date=<?php echo $log['打刻日']; ?>" 
-                    onclick="return window.confirm('本当にこの日のデータを削除しますか？');">削除</a>
+                    <form action="delete.php" method="POST" style="display:inline;" onsubmit="return confirm('本当に削除してもよろしいですか？');">
+                        <input type="hidden" name="id" value="<?php echo $log['user_id']; ?>">
+                        <button type="submit" class="delete">削除</button>
+                    </form>
+                </td>
                 </td>
             </tr>
             <?php endforeach; ?>

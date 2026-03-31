@@ -8,7 +8,7 @@ $password = isset($_POST['password']) ? $_POST['password'] : '';
 // 入力欄が空じゃないかチェック
 if ($email === '' || $password === ''){
     $_SESSION['error'] = 'メールアドレスまたはパスワードが正しくありません。';
-    header('Location: login.php');
+    header('Location: index.php');
     exit;
 }
 
@@ -38,7 +38,7 @@ try {
         $_SESSION['role']      = $user['role'];
         
         if ($user['role'] === 'admin') {
-            header('Location: admin_dashbord.php'); 
+            header('Location: admin_dashboard.php'); 
         } else {
             header('Location: punch_screen.php');
         }

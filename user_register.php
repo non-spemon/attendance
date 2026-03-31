@@ -10,13 +10,15 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>新規スタッフ登録</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スタッフ登録</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="shortcut icon" href="img/favicon16.ico">
     <link rel="shortcut icon" href="img/favicon32.ico">
-    <link rel="shortcut icon" href="img/favicon48.ico"> 
-    <link rel="stylesheet" href="/css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon48.ico">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">

@@ -5,7 +5,7 @@ require_once 'db_connect.php';
 require_once 'auth_admin.php';
 
 //  URLからIDを取得
-$id = $_GET['id'] ?? null;
+$id = $_POST['id'] ?? null;
 
 if (!$id) {
     exit('削除するIDが指定されていません。');

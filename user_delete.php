@@ -8,12 +8,16 @@ session_start();
 require_once 'db_connect.php';
 require_once 'auth_admin.php';
 
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
 
 if ($id > 0) {
     try {
         if ($id === (int)$_SESSION['user_id']) {
-            exit('自分自身を削除することはできません。');
+            echo "<script>
+            alert('自分自身（ログイン中の管理者）を削除することはできません。');
+            window.location.href = 'user_list.php';
+            </script>";
+            exit;
         }
 
         // 【ここが重要！】トランザクションを開始します
