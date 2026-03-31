@@ -15,6 +15,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     <link rel="shortcut icon" href="img/favicon16.ico">
     <link rel="shortcut icon" href="img/favicon32.ico">
     <link rel="shortcut icon" href="img/favicon48.ico"> 
+    <link rel="stylesheet" href="/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>

@@ -1,11 +1,8 @@
 <?php
 session_start();
+//  データベース接続
 require_once 'db_connect.php';
-
-// 権限チェック
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    exit('権限がありません。');
-}
+require_once 'auth_admin.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = trim($_POST['name']);
@@ -32,12 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':password' => $hashed_password,
             ':role' => $role
         ]);
-
-<<<<<<< HEAD
         header('Location: admin_dashboard.php?message=user_added');
-=======
-        header('Location: admin_dashbord.php?message=user_added');
->>>>>>> 599e144 (indexのスペル修正)
         exit;
 
     } catch (PDOException $e) {

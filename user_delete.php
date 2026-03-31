@@ -4,12 +4,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
+//  データベース接続
 require_once 'db_connect.php';
-
-// 権限チェック
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    exit('権限がありません。');
-}
+require_once 'auth_admin.php';
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 

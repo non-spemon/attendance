@@ -1,12 +1,8 @@
 <?php
 session_start();
+//  データベース接続
 require_once 'db_connect.php';
-
-// 権限チェック
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header('Location: index.php');
-    exit;
-}
+require_once 'auth_admin.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // フォームから届いたデータ

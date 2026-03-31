@@ -1,17 +1,12 @@
 <?php
-// 1. セッション開始
+//  セッション開始
 session_start();
 
-// 2. データベース接続
+//  データベース接続
 require_once 'db_connect.php';
+require_once 'auth_admin.php';
 
-// 3. 権限チェック
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header('Location: index.php');
-    exit;
-}
-
-// 4. データ取得（1日1行に集約するSQL）
+// データ取得（1日1行に集約するSQL）
 $logs = []; 
 try {
     $sql = "SELECT 
@@ -39,7 +34,11 @@ try {
 <head>
     <meta charset="UTF-8">
     <title>管理者画面</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="css/style.css">
+=======
+    <link rel="stylesheet" href="/css/style.css">
+>>>>>>> b45a9b7 (admin_dashboard.phpスペル修正/CSS修正/auth_admin.phpの追加)
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,6 +57,7 @@ try {
         <p>ようこそ <?php echo htmlspecialchars($_SESSION['user_name'] ?? '管理者'); ?>さん</p>
         <a class="user_btn" href="user_list.php">スタッフ一覧</a>
         <a class="logout_btn_d" href="logout.php">ログアウト</a>
+<<<<<<< HEAD
         <form method="GET" action="admin_dashboard.php" class="search-form">
             <select name="user_id">
                 <option value="">全てのスタッフ</option>
@@ -72,6 +72,8 @@ try {
             <a href="admin_dashboard.php">解除</a>
         </form>
         
+=======
+>>>>>>> b45a9b7 (admin_dashboard.phpスペル修正/CSS修正/auth_admin.phpの追加)
     </div>
     <div class="table-container">
     <table >

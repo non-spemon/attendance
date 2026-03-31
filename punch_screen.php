@@ -1,7 +1,7 @@
 <?php
 // 1. 門番（警備員）とDB接続を呼ぶ
 require_once 'check_login.php';
-require_once 'db_connect.php'; // DB接続も必要です！
+require_once 'db_connect.php'; 
 
 // 2. セッションからユーザーIDと名前を取り出す
 $userId   = $_SESSION['user_id'];
@@ -24,7 +24,7 @@ $current_status = $last_log['status'] ?? 'check-out';
 <head>
     <meta charset="UTF-8">
     <title>打刻画面</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="shortcut icon" href="img/favicon16.ico">
     <link rel="shortcut icon" href="img/favicon32.ico">
