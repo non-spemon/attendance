@@ -1,12 +1,15 @@
 <?php
+
 session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+//  データベース接続
 require_once 'db_connect.php';
+require_once 'function.php';
+checkAdmin();
 
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header('Location: login.php');
-    exit;
-}
-
+// ユーザー一覧を取得
 try {
     $sql = "SELECT id, name, email, role FROM users ORDER BY id ASC";
     $stmt = $pdo->query($sql);
@@ -15,38 +18,13 @@ try {
     exit('データ取得エラー：' . $e->getMessage());
 }
 
-?>
-
-<?php
-session_start();
-require_once 'db_connect.php';
-
-// 管理者以外はアクセス禁止
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header('Location: index.php');
-    exit;
-}
-
-// ユーザー一覧を取得（自分以外を表示する場合などはWHERE句を足します）
-try {
-    $sql = "SELECT id, name, email, role FROM users ORDER BY id ASC";
-    $stmt = $pdo->query($sql);
-    $users = $stmt->fetchAll();
-} catch (PDOException $e) {
-    exit('データ取得エラー：' . $e->getMessage());
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>スタッフ管理一覧</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="img/favicon16.ico">
-    <link rel="shortcut icon" href="img/favicon32.ico">
-    <link rel="shortcut icon" href="img/favicon48.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php require 'common_head.php'; ?>
+    <title>スタッフ一覧</title>
 </head>
 <body>
     <div class="head">
@@ -71,11 +49,15 @@ try {
                 <td><?php echo htmlspecialchars($user['email']); ?></td>
                 <td><?php echo ($user['role'] === 'admin') ? '管理者' : '一般'; ?></td>
                 <td class="btn">
-                    <a href="user_delete.php?id=<?php echo $user['id']; ?>" 
-                       class="cancel" 
-                       onclick="return confirm('本当にこのスタッフを削除しますか？\n※この操作は取り消せません。');">
-                       削除
-                    </a>
+                    <?php if ((int)$user['id'] !== (int)$_SESSION['user_id']): ?>
+                        <!-- 自分でない場合のみ、削除フォームを表示する -->
+                        <form action="user_delete.php" method="POST" style="display:inline;" onsubmit="return confirm('本当に削除してもよろしいですか？\n※この操作は取り消せません。');">   
+                            <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
+                            <button type="submit" class="delete">削除</button>
+                        </form>
+                    <?php endif; ?>
+                    
+                    <!-- 自分の場合は、ここに何も書かない（空欄になる） -->
                 </td>
             </tr>
             <?php endforeach; ?>

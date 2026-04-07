@@ -1,29 +1,24 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
+//  データベース接続
 require_once 'db_connect.php';
+require_once 'function.php';
+checkAdmin();
 
-// 権限チェック
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    exit('権限がありません。');
-}
-
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
 
 if ($id > 0) {
+    // 文字列で送られてきた情報をintで数値化。ログインしているuser_idが$idと一致する場合（管理者）は削除不可とし、画面を戻す
     try {
         if ($id === (int)$_SESSION['user_id']) {
-            exit('自分自身を削除することはできません。');
+            header('Location: user_list.php');
+            exit;
         }
 
-        // 【ここが重要！】トランザクションを開始します
+        // トランザクションを開始します
         $pdo->beginTransaction();
 
         // 1. まず、そのユーザーに紐付く「すべての」打刻履歴を削除する
-        // ※ LIMIT 1 を外さないと、1件しか消えずエラーになる可能性があります
         $sql_logs = "DELETE FROM attendance_logs WHERE user_id = :id";
         $stmt_logs = $pdo->prepare($sql_logs);
         $stmt_logs->execute([':id' => $id]);

@@ -1,28 +1,31 @@
 <?php
 session_start();
 require_once 'db_connect.php';
+require_once 'function.php';
+checkAdmin();
 
-// 1. 権限チェック（管理者以外はアクセス不可）
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    exit('権限がありません。');
-}
+// POSTで送られてきた「ユーザーID」と「日付」を取得
+$user_id = $_POST['user_id'] ?? null;
+$date = $_POST['date'] ?? null;
 
-// 2. URLからIDを取得
-$id = $_GET['id'] ?? null;
-
-if (!$id) {
-    exit('削除するIDが指定されていません。');
+// 両方のデータがない場合はエラー
+if (!$user_id || !$date) {
+    exit('削除に必要な情報が不足しています。');
 }
 
 try {
-    // 3. データベースから削除を実行
-    // WHERE句を忘れると全データ消えるので注意！
-    $sql = "DELETE FROM attendance_logs WHERE id = :id";
+    // 【修正ポイント】
+    // 「特定のユーザー」の「特定の日付」のログをすべて削除するSQL
+    $sql = "DELETE FROM attendance_logs 
+            WHERE user_id = :user_id 
+            AND DATE(punched_at) = :date";
+            
     $stmt = $pdo->prepare($sql);
-    $stmt->execute([':id' => $id]);
+    $stmt->execute([
+        ':user_id' => $user_id,
+        ':date'    => $date
+    ]);
 
-    // 4. 完了したら管理者ダッシュボードに戻る
-    // メッセージを付けておくと親切です
     header('Location: admin_dashboard.php?message=deleted');
     exit;
 

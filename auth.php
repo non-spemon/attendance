@@ -2,21 +2,22 @@
 session_start();
 require_once 'db_connect.php';
 
+// 入力値が空ではないかのバリデーション
 $email = isset($_POST['email']) ? trim($_POST['email']) : '';
 $password = isset($_POST['password']) ? $_POST['password'] : '';
 
 // 入力欄が空じゃないかチェック
 if ($email === '' || $password === ''){
     $_SESSION['error'] = 'メールアドレスまたはパスワードが正しくありません。';
-    header('Location: login.php');
+    header('Location: index.php');
     exit;
 }
 
-// メールアドレスの形式をチェック
+// メールアドレスの形式をチェック　バリデーション
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $_SESSION['error'] = '有効なメールアドレスの形式で入力してください。';
 
-    // 入力されたメアドを一時保存用に入れる
+    // 入力されたメールアドレスは無効なものでも一時的に保存しておく
     $_SESSION['temp_email'] = $email;
     
     header('Location: index.php');
@@ -38,7 +39,7 @@ try {
         $_SESSION['role']      = $user['role'];
         
         if ($user['role'] === 'admin') {
-            header('Location: admin_dashbord.php'); 
+            header('Location: admin_dashboard.php'); 
         } else {
             header('Location: punch_screen.php');
         }

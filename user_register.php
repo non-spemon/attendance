@@ -1,21 +1,15 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header('Location: index.php');
-    exit;
-}
+require_once 'auth_admin.php';
+require_once 'function.php';
+checkAdmin();
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>新規スタッフ登録</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="img/favicon16.ico">
-    <link rel="shortcut icon" href="img/favicon32.ico">
-    <link rel="shortcut icon" href="img/favicon48.ico"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php require 'common_head.php'; ?>
+    <title>スタッフ登録</title>
 </head>
 <body>
     <div class="container">

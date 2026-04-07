@@ -1,14 +1,11 @@
 <?php
 session_start();
+//  データベース接続
 require_once 'db_connect.php';
+require_once 'function.php';
+checkAdmin();
 
-// 1. 権限チェック
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header('Location: index.php');
-    exit;
-}
-
-// 2. 送られてきたデータを受け取る
+// 送られてきたデータを受け取る
 $user_id = $_GET['user_id'] ?? null;
 $date = $_GET['date'] ?? null;
 
@@ -16,7 +13,7 @@ if (!$user_id || !$date) {
     exit('ユーザーIDまたは日付が指定されていません。');
 }
 
-// 3. データベースから取得
+// データベースから取得
 $check_in_time = '';
 $check_out_time = '';
 
@@ -33,7 +30,7 @@ try {
         exit('指定された日のデータが見つかりません。');
     }
 
-    // 4. 出勤と退勤の時間を変数に仕分け
+    // 出勤と退勤の時間を変数に仕分け
     foreach ($all_logs as $log) {
         // 余計な空白を消して、小文字で比較する
         $status_value = strtolower(trim($log['status']));
@@ -53,9 +50,8 @@ try {
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
+    <?php require 'common_head.php'; ?>
     <title>打刻データの編集</title>
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="container">
