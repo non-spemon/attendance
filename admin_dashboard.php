@@ -1,10 +1,10 @@
 <?php
 //  セッション開始
 session_start();
-
 //  データベース接続
 require_once 'db_connect.php';
-require_once 'auth_admin.php';
+require_once 'function.php';
+checkAdmin();
 
 // データ取得（1日1行に集約するSQL）
 $logs = []; 

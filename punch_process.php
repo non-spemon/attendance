@@ -1,6 +1,9 @@
 <?php
-require_once 'check_login.php';
+session_start();
 require_once 'db_connect.php';
+require_once 'function.php'; 
+checkLogin();
+
 
 $action = $_POST['action'] ?? '';
 $userId = $_SESSION['user_id'];

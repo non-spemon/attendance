@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once 'db_connect.php';
-require_once 'auth_admin.php';
+require_once 'function.php';
+checkAdmin();
 
 // POSTで送られてきた「ユーザーID」と「日付」を取得
 $user_id = $_POST['user_id'] ?? null;

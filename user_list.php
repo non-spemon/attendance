@@ -6,7 +6,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 //  データベース接続
 require_once 'db_connect.php';
-require_once 'auth_admin.php';
+require_once 'function.php';
+checkAdmin();
 
 // ユーザー一覧を取得
 try {

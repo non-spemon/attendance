@@ -2,7 +2,8 @@
 session_start();
 //  データベース接続
 require_once 'db_connect.php';
-require_once 'auth_admin.php';
+require_once 'function.php';
+checkAdmin();
 
 $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
 

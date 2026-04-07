@@ -1,7 +1,9 @@
 <?php
-// 1. 門番（警備員）とDB接続を呼ぶ
-require_once 'check_login.php';
-require_once 'db_connect.php'; 
+session_start();
+// 1.ログインチェック
+require_once 'function.php';
+checkLogin();
+require_once 'db_connect.php';
 
 // 2. セッションからユーザーIDと名前を取り出す
 $userId   = $_SESSION['user_id'];
