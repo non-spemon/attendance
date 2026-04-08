@@ -68,12 +68,12 @@ try {
 
         <div class="edit-group">
             <label>出勤時間</label>
-            <input type="time" name="check_in_time" value="<?php echo $check_in_time; ?>">
+            <input type="time" name="check_in_time" value="<?php echo $check_in_time; ?>" required>
         </div>
         
         <div class="edit-group">
             <label>退勤時間</label>
-            <input type="time" name="check_out_time" value="<?php echo $check_out_time; ?>">
+            <input type="time" name="check_out_time" value="<?php echo $check_out_time; ?>" required>
         </div>
 
         <br>
