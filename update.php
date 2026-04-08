@@ -13,6 +13,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $check_in_time = $_POST['check_in_time'];
     $check_out_time = $_POST['check_out_time'];
 
+    if (!empty($check_in_time) && !empty($check_out_time)) {
+        // 同じ日付内での前後関係をチェック
+        if (strtotime($check_in_time) >= strtotime($check_out_time)) {
+            echo "<script>
+                    alert('エラー：退勤時間は出勤時間より後の時刻を指定してください。');
+                    history.back();
+                  </script>";
+            exit; // 矛盾があればここで終了し、下の try 以降を実行させない
+        }
+    }
+
     try {
         $pdo->beginTransaction(); // 失敗に備えてトランザクション開始
 
