@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     alert('エラー：退勤時間は出勤時間より後の時刻を指定してください。');
                     history.back();
                   </script>";
-            exit; // 矛盾があればここで終了し、下の try 以降を実行させない
+            exit; 
         }
     }
 
