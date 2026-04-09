@@ -56,6 +56,14 @@ try {
 <body>
 <div class="container">
     <h1>打刻データの編集</h1>
+    <?php if (isset($_SESSION['error'])): ?>
+        <p style="color: red; font-weight: bold;">
+            <?php 
+                echo htmlspecialchars($_SESSION['error']); 
+                unset($_SESSION['error']); 
+            ?>
+        </p>
+    <?php endif; ?>
     <form action="update.php" method="POST" onsubmit="return confirm('本当に更新しますか？')">
         
         <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">

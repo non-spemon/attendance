@@ -13,19 +13,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $check_in_time = $_POST['check_in_time'];
     $check_out_time = $_POST['check_out_time'];
 
+    // --- 修正箇所：バリデーション ---
     if (!empty($check_in_time) && !empty($check_out_time)) {
-        // 同じ日付内での前後関係をチェック
-        if (strtotime($check_in_time) >= strtotime($check_out_time)) {
-            echo "<script>
-                    alert('エラー：退勤時間は出勤時間より後の時刻を指定してください。');
-                    history.back();
-                  </script>";
-            exit; 
+        if (strtotime($new_date . ' ' . $check_in_time) >= strtotime($new_date . ' ' . $check_out_time)) {
+            // $_SESSIONにエラーメッセージを入れる
+            $_SESSION['error'] = '退勤時間は出勤時間より後の時刻を指定してください。';
+            // 前のページ（edit.php）へ戻す　または戻り先がわからなければ安全にダッシュボードへ戻れるようにする
+            $return_url = $_SERVER['HTTP_REFERER'] ?? 'admin_dashboard.php';
+            header('Location: ' . $return_url);
+            exit;
         }
     }
 
     try {
-        $pdo->beginTransaction(); // 失敗に備えてトランザクション開始
+        $pdo->beginTransaction(); 
 
         // 1. 出勤データの更新
         if (!empty($check_in_time)) {

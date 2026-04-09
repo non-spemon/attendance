@@ -145,7 +145,7 @@ body {
     text-decoration: none;
 }
 
-/* addmin_dashboard.php */
+/* admin_dashboard.php */
 .head {
     width: 80%;
     padding: 30px;        
@@ -164,7 +164,7 @@ body {
     font-weight: 500;
     margin-bottom: 10px;
 }
-/* 二つのボタンに共通する「鉄板」の設定 */
+/* 二つのボタンに共通する */
 .head .logout_btn_d,
 .head .user_btn {
     display: inline-block;
