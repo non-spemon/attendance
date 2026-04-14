@@ -13,16 +13,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $check_in_time = $_POST['check_in_time'];
     $check_out_time = $_POST['check_out_time'];
 
-    // --- 修正箇所：バリデーション ---
-    if (!empty($check_in_time) && !empty($check_out_time)) {
-        if (strtotime($new_date . ' ' . $check_in_time) >= strtotime($new_date . ' ' . $check_out_time)) {
-            // $_SESSIONにエラーメッセージを入れる
-            $_SESSION['error'] = '退勤時間は出勤時間より後の時刻を指定してください。';
-            // 前のページ（edit.php）へ戻す　または戻り先がわからなければ安全にダッシュボードへ戻れるようにする
-            $return_url = $_SERVER['HTTP_REFERER'] ?? 'admin_dashboard.php';
-            header('Location: ' . $return_url);
-            exit;
-        }
+
+    // 片方の時間が空の場合NGを出すバリデーション
+    //if (empty($check_in_time) || empty($check_out_time)) {
+    // $_SESSION['error'] = '出勤と退勤は両方入力してください。';
+        // 前のページに戻す
+    // $return_url = $_SERVER['HTTP_REFERER'] ?? 'admin_dashboard.php';
+    // header('Location: ' . $return_url);
+    //  exit;
+    //}
+
+// B. 矛盾チェック　時間の前後関係をチェックする関数を呼び出し
+    if (!isValidTimeRange($new_date, $check_in_time, $check_out_time)) {
+        $_SESSION['error'] = '退勤時間は出勤時間より後の時刻を指定してください。';
+        $return_url = $_SERVER['HTTP_REFERER'] ?? 'admin_dashboard.php';
+        header('Location: ' . $return_url);
+        exit;
     }
 
     try {
