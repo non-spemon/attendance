@@ -15,15 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     // 片方の時間が空の場合NGを出すバリデーション
-    //if (empty($check_in_time) || empty($check_out_time)) {
-    // $_SESSION['error'] = '出勤と退勤は両方入力してください。';
+    if (empty($check_in_time) || empty($check_out_time)) {
+     $_SESSION['error'] = '出勤と退勤は両方入力してください。';
         // 前のページに戻す
-    // $return_url = $_SERVER['HTTP_REFERER'] ?? 'admin_dashboard.php';
-    // header('Location: ' . $return_url);
-    //  exit;
-    //}
+     $return_url = $_SERVER['HTTP_REFERER'] ?? 'admin_dashboard.php';
+     header('Location: ' . $return_url);
+      exit;
+    }
 
-// B. 矛盾チェック　時間の前後関係をチェックする関数を呼び出し
+    // 矛盾チェック　時間の前後関係をチェックする関数を呼び出し
     if (!isValidTimeRange($new_date, $check_in_time, $check_out_time)) {
         $_SESSION['error'] = '退勤時間は出勤時間より後の時刻を指定してください。';
         $return_url = $_SERVER['HTTP_REFERER'] ?? 'admin_dashboard.php';

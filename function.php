@@ -15,6 +15,16 @@ function checkAdmin() {
     }
 }
 
+// セッションにある一時的なメールアドレスを返し、削除する
+function getEmailValue() {
+    $email = '';
+    if (isset($_SESSION['temp_email'])) {
+        $email = htmlspecialchars($_SESSION['temp_email']);
+        unset($_SESSION['temp_email']); // 次回は空にする
+    }
+    return $email; // 値を外（value属性）に投げ返す
+}
+
 // 出勤と退勤の時間の前後関係が正しいかチェックする関数 update.php
 function isValidTimeRange($date, $check_in, $check_out) {
     // もしどちらかが空なら比較できないので、一旦「正しい（true）」として返す
