@@ -56,6 +56,8 @@ try {
 <body>
 <div class="container">
     <h1>打刻データの編集</h1>
+    <?php displayErrorMessage(); ?>
+    <?php endif; ?>
     <form action="update.php" method="POST" onsubmit="return confirm('本当に更新しますか？')">
         
         <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">

@@ -13,8 +13,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $check_in_time = $_POST['check_in_time'];
     $check_out_time = $_POST['check_out_time'];
 
+
+    // 片方の時間が空の場合NGを出すバリデーション
+    if (empty($check_in_time) || empty($check_out_time)) {
+     $_SESSION['error'] = '出勤と退勤は両方入力してください。';
+        // 前のページに戻す
+     $return_url = $_SERVER['HTTP_REFERER'] ?? 'admin_dashboard.php';
+     header('Location: ' . $return_url);
+      exit;
+    }
+
+    // 矛盾チェック　時間の前後関係をチェックする関数を呼び出し
+    if (!isValidTimeRange($new_date, $check_in_time, $check_out_time)) {
+        $_SESSION['error'] = '退勤時間は出勤時間より後の時刻を指定してください。';
+        $return_url = $_SERVER['HTTP_REFERER'] ?? 'admin_dashboard.php';
+        header('Location: ' . $return_url);
+        exit;
+    }
+
     try {
-        $pdo->beginTransaction(); // 失敗に備えてトランザクション開始
+        $pdo->beginTransaction(); 
 
         // 1. 出勤データの更新
         if (!empty($check_in_time)) {
