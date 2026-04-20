@@ -1,6 +1,6 @@
 <?php
 session_start();
-//  データベース接続
+//  データベース接続；
 require_once 'db_connect.php';
 require_once 'function.php';
 checkAdmin();
