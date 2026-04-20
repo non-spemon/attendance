@@ -3,7 +3,7 @@ name: Auto Deploy
 on:
   push:
     branches:
-      - main  # mainブランチにプッシュされた時に動く
+      - main  # ← branchesの真下にスペース2個空けて配置
 
 jobs:
   deploy:
@@ -18,9 +18,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          # サーバー側のフォルダの場所（FileZilla等で確認したパス）
           server-dir: /public_html/attendance/
-          # サーバー上の本番用設定ファイルを上書きしないための除外設定
           exclude: |
             **/.git*
             **/.github*
