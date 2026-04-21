@@ -1,5 +1,6 @@
-<?php session_start()
+<?php session_start();
       require_once 'function.php';
+      this_is_bug();
 ?>
 
 <!DOCTYPE html>
