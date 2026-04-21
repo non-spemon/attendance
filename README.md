@@ -18,7 +18,7 @@
 
 **使用技術**　　
 
-PHP 8.x / MySQL / JavaScript / CSS (Flexbox) / XAMPP
+PHP 8.x / MySQL / JavaScript / CSS (Flexbox) / XAMPP / GitHub Actions (CI/CD)
 
 **こだわった点**　
 
@@ -30,6 +30,8 @@ CRUD機能を網羅し、PDOを用いた安全なデータベース操作を実�
 現場での利用を想定し、レスポンシブデザインを採用。<br>
 どのデバイスからでも直感的に打刻できるレイアウトを目指しました。<br>
 また、index.phpへのアクセスで即座にログイン画面へ誘導するなど、ユーザーの導線も改善しました。<br>
+
+### 苦労したこと
 
 **今後改修したいこと**
 ### 管理者用ダッシュボードの拡充:
