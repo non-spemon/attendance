@@ -3,8 +3,9 @@ name: Auto Deploy
 on:
   push:
     branches:
-      - main  # ← branchesの真下にスペース2個空けて配置
-  workflow_dispatch:
+      - main
+  workflow_dispatch: # 手動で実行ボタンを押すことも可能にする設定
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -18,8 +19,12 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          # エックスサーバーの公開ディレクトリを指定
           server-dir: /nonpoko.com/public_html/attendance/
+          # サーバーに上げたくないファイル・フォルダを指定
           exclude: |
             **/.git*
+            **/.git*/**
             **/.github*
-            **/db_connect.php
+            **/.github*/**
+            node_modules/**
