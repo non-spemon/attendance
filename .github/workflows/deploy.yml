@@ -21,7 +21,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           # エックスサーバーの公開ディレクトリを指定
           server-dir: /nonpoko.com/public_html/attendance/
-          # サーバーに上げたくないファイル・フォルダを指定する
+          # サーバーに上げたくないファイル・フォルダを指定
           exclude: |
             **/.git*
             **/.git*/**
