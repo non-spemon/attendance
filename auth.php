@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'db_connect.php';
+require_once 'function.php';
 
 // 入力値が空ではないかのバリデーション
 $email = isset($_POST['email']) ? trim($_POST['email']) : '';

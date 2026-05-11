@@ -1,18 +1,20 @@
 <?php
-// 環境変数から情報を取得
-$host = getenv('DB_HOST') ?: 'localhost';
-$dbname = getenv('DB_NAME');
-$user = getenv('DB_USER');
-$pass = getenv('DB_PASS');
+// 1. 環境変数を取得（なければ右側のローカル用デフォルト値を使う）
+$host   = getenv('DB_HOST') ?: 'localhost';
+$dbname = getenv('DB_NAME') ?: 'kintan_db';
+$user   = getenv('DB_USER') ?: 'root';
+$pass   = getenv('DB_PASS') ?: ''; 
+$charset = 'utf8mb4';
 
 try {
-    // 取得した変数を使って接続
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
+    // 2. 接続文字列（DSN）を組み立てる
+    $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
+    
+    $pdo = new PDO($dsn, $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
-    // 公開用：エラーの詳細は出さず、ログに記録する
     error_log('DB接続エラー：' . $e->getMessage());
     exit('ただいまメンテナンス中です。');
 }

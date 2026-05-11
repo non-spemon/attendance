@@ -54,10 +54,14 @@ function displayErrorMessage() {
 
 //　本番環境でのエラーが起きた時のメッセージ表示をローカルと切り替える
 function handle_error($message) {
+    // サーバーのログに詳細を記録
     error_log($message);
+
+    // 環境変数を確認して表示を切り替え
     if (getenv('APP_ENV') === 'production') {
         exit('ただいまメンテナンス中です。');
     } else {
+        // ローカル環境（APP_ENVがない、またはlocal）なら詳細を出す
         exit('開発用エラー表示：' . $message);
     }
 }
