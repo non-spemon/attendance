@@ -25,7 +25,7 @@ try {
     $stmt = $pdo->query($sql);
     $logs = $stmt->fetchAll();
 } catch (PDOException $e) {
-    exit('データ取得エラーが発生しました：' . $e->getMessage());
+    handle_error('データ取得エラーが発生しました：' . $e->getMessage());
 }
 ?>
 

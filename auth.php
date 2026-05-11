@@ -52,5 +52,5 @@ try {
     }
 
 } catch (PDOException $e) {
-    exit('システムエラーが発生しました：' . $e->getMessage());
+    handle_error('システムエラーが発生しました。：' . $e->getMessage());
 }

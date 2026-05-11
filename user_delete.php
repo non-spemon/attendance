@@ -33,15 +33,13 @@ if ($id > 0) {
 
         header('Location: user_list.php?message=deleted');
         exit;
-
     } catch (PDOException $e) {
-        // もし途中で失敗したら、開始前の状態に巻き戻す
+        // 1. もし途中で失敗したら、開始前の状態に巻き戻す（ロールバック）
         if ($pdo->inTransaction()) {
             $pdo->rollBack();
         }
-        // デバッグ用
-         exit('エラー内容: ' . $e->getMessage()); 
-        // header('Location: user_list.php?error=failed');
-        exit;
+        
+        // 2. 自作関数を呼び出して、ログ出力と画面表示を一任する
+        handle_error('ユーザー削除エラー（ID:' . $id . '）：' . $e->getMessage());
     }
 }

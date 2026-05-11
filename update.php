@@ -72,8 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: admin_dashboard.php?message=success');
         exit;
 
-    } catch (Exception $e) {
-        $pdo->rollBack(); // どこかで失敗したら元に戻す
-        exit('更新エラーが発生しました：' . $e->getMessage());
+    } catch (PDOException $e) {
+        handle_error('エラーが発生しました：' . $e->getMessage());
     }
 }

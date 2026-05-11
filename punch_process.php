@@ -49,7 +49,6 @@ try {
     }
     
 } catch (PDOException $e) {
-    // 4. 出勤・退勤どちらでエラーが起きてもここでキャッチ！
-    exit("エラーが発生しました: " . $e->getMessage());
+    handle_error('エラーが発生しました：' . $e->getMessage());
 }
 

@@ -30,5 +30,5 @@ try {
     exit;
 
 } catch (PDOException $e) {
-    exit('削除エラーが発生しました：' . $e->getMessage());
+    handle_error('削除エラーが発生しました。：' . $e->getMessage());
 }

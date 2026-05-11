@@ -43,7 +43,7 @@ try {
         }
     }
 } catch (PDOException $e) {
-    exit('データ取得エラー：' . $e->getMessage());
+    handle_error('エラーが発生しました。：' . $e->getMessage());
 }
 ?>
 
