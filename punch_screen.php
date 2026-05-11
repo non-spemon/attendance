@@ -1,9 +1,10 @@
 <?php
 session_start();
+require_once 'db_connect.php';
 // 1.ログインチェック
 require_once 'function.php';
 checkLogin();
-require_once 'db_connect.php';
+
 
 // 2. セッションからユーザーIDと名前を取り出す
 $userId   = $_SESSION['user_id'];
