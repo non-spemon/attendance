@@ -1,7 +1,25 @@
 <?php
 // 一般ユーザー門番（打刻画面用）
 function checkLogin() {
+    global $pdo; // 外部の$pdoを使うために必要
+
     if (!isset($_SESSION['user_id'])) {
+        header('Location: index.php');
+        exit;
+    }
+
+    // データベースにユーザーが存在するか再確認（セキュリティ）
+    $sql = "SELECT id FROM users WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+    
+    // ↓ ここに配列でセッションのIDを渡します
+    $stmt->execute([':id' => $_SESSION['user_id']]); 
+    
+    $user = $stmt->fetch();
+
+    if (!$user) {
+        // ユーザーが存在しない場合は強制ログアウト
+        session_destroy();
         header('Location: index.php');
         exit;
     }
