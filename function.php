@@ -53,7 +53,6 @@ function displayErrorMessage() {
 }
 
 //　本番環境でのエラーが起きた時のメッセージ表示をローカルと切り替える
-f// function.php の中
 function handle_error($message) {
     // サーバーのログに詳細を記録（これは画面には出ない）
     error_log($message);
