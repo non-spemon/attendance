@@ -11,7 +11,7 @@ $userName = $_SESSION['user_name'];
 
 // 3. 最新の1件を取得して「今の状態」を確認する
 $sql = "SELECT status FROM attendance_logs 
-        WHERE user_id = :user_id 
+        WHERE user_id = :user 
         ORDER BY punched_at DESC LIMIT 1";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([':user_id' => $userId]);
