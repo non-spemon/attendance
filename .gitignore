@@ -1,1 +1,11 @@
+# データベース接続設定などの機密情報（ファイル名は自分のものに合わせてください）
+config.php
+.env
 attendance_app/
+
+# OSが勝手に作る不要なファイル
+.DS_Store
+Thumbs.db
+
+# 開発ツールの設定
+.vscode/
