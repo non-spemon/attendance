@@ -19,6 +19,7 @@ try {
                 MAX(CASE WHEN attendance_logs.status = 'check-out' THEN attendance_logs.punched_at END) AS 退勤時間
             FROM attendance_logs
             JOIN users ON attendance_logs.user_id = users.id
+            WHERE attendance_logs.deleted_at IS NULL -- 削除されていないものに絞る
             GROUP BY user_id, 打刻日 -- ユーザーごと、日付ごとにまとめる
             ORDER BY 打刻日 DESC, 出勤時間 DESC";
 
@@ -34,7 +35,6 @@ try {
 <head>
     <?php require 'common_head.php'; ?>
     <title>管理者画面</title>
-    <title>管理者画面</title>
 </head>
 <body>
     <div class="head">
@@ -46,8 +46,14 @@ try {
         <?php if (isset($_GET['message']) && $_GET['message'] === 'success'): ?>
             <p style="color: green; font-weight: bold;">データを更新しました。</p>
         <?php endif; ?>
+
+        <?php if (isset($_GET['message']) && $_GET['message'] === 'restored'): ?>
+            <p style="color: orange; font-weight: bold;">データを更新しました。</p>
+        <?php endif; ?>
+
         <p>ようこそ <?php echo htmlspecialchars($_SESSION['user_name'] ?? '管理者'); ?>さん</p>
         <a class="user_btn" href="user_list.php">スタッフ一覧</a>
+        <a class="trash_btn" href="trash_list.php">ゴミ箱</a>
         <a class="logout_btn_d" href="logout.php">ログアウト</a>
     </div>
     <div class="table-container">

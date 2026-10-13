@@ -166,7 +166,8 @@ body {
 }
 /* 二つのボタンに共通する */
 .head .logout_btn_d,
-.head .user_btn {
+.head .user_btn,
+.head .trash_btn {
     display: inline-block;
     width: 140px;         
     height: 45px;        
@@ -190,6 +191,13 @@ body {
 .head .logout_btn_d {
     background-color: #67626f;
     border: 1px solid #67626f;
+    color: white;
+    margin-left: 10px;
+}
+
+.head .trash_btn {
+    background-color: #8b2227;
+    border: 1px solid #8b2227;
     color: white;
     margin-left: 10px;
 }
@@ -370,6 +378,7 @@ form input[type="datetime-local"] {
     }
 
     .head .user_btn, 
+    .head .trash_btn,
     .head .logout_btn_d {
         width: 50% !important; /* ボタンを横いっぱいに広げる */
         margin-left: 0 !important;
@@ -421,6 +430,7 @@ form input[type="datetime-local"] {
     }
 
     .head .user_btn, 
+    .head .trash_btn,
     .head .logout_btn_d {
         width: 50% !important;
         margin-left: 0 !important;
