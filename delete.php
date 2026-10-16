@@ -15,7 +15,7 @@ if (!$user_id || !$date) {
 
 try {
     // 【修正ポイント】
-    // 「特定のユーザー」の「特定の日付」のログをすべて削除するSQL(倫理削除)
+    // 「特定のユーザー」の「特定の日付」のログをすべて削除するSQL(論理削除)
     $now = date('Y-m-d H:i:s');
     $sql = "UPDATE attendance_logs
             SET deleted_at = :deleted_at
