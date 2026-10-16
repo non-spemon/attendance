@@ -15,13 +15,17 @@ if (!$user_id || !$date) {
 
 try {
     // 【修正ポイント】
-    // 「特定のユーザー」の「特定の日付」のログをすべて削除するSQL
-    $sql = "DELETE FROM attendance_logs 
+    // 「特定のユーザー」の「特定の日付」のログをすべて削除するSQL(論理削除)
+    $now = date('Y-m-d H:i:s');
+    $sql = "UPDATE attendance_logs
+            SET deleted_at = :deleted_at
             WHERE user_id = :user_id 
-            AND DATE(punched_at) = :date";
+            AND DATE(punched_at) = :date
+            AND deleted_at IS NULL";
             
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
+        ':deleted_at' => $now,
         ':user_id' => $user_id,
         ':date'    => $date
     ]);

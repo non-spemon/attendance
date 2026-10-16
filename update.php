@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 WHERE user_id = :user_id 
                 AND DATE(punched_at) = :old_date 
                 AND status = 'check-in'
+                AND attendance_logs.deleted_at IS NULL
             ");
             $stmt->execute([
                 ':new_punched' => $new_date . ' ' . $check_in_time . ':00',
@@ -58,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 WHERE user_id = :user_id 
                 AND DATE(punched_at) = :old_date 
                 AND status = 'check-out'
+                AND attendance_logs.deleted_at IS NULL
             ");
             $stmt->execute([
                 ':new_punched' => $new_date . ' ' . $check_out_time . ':00',
