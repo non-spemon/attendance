@@ -48,7 +48,7 @@ try {
         <?php endif; ?>
 
         <?php if (isset($_GET['message']) && $_GET['message'] === 'restored'): ?>
-            <p style="color: orange; font-weight: bold;">データを更新しました。</p>
+            <p style="color: orange; font-weight: bold;">データを復元しました。</p>
         <?php endif; ?>
 
         <p>ようこそ <?php echo htmlspecialchars($_SESSION['user_name'] ?? '管理者'); ?>さん</p>
