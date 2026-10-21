@@ -22,6 +22,7 @@ try {
         SELECT * FROM attendance_logs 
         WHERE user_id = :user_id 
         AND DATE(punched_at) = :date
+        AND attendance_logs.deleted_at IS NULL
     ");
     $stmt->execute([':user_id' => $user_id, ':date' => $date]);
     $all_logs = $stmt->fetchAll();
