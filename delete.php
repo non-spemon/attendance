@@ -13,6 +13,7 @@ if (!$user_id || !$date) {
     exit('削除に必要な情報が不足しています。');
 }
 
+date_default_timezone_set('Asia/Tokyo');
 try {
     // 【修正ポイント】
     // 「特定のユーザー」の「特定の日付」のログをすべて削除するSQL(論理削除)

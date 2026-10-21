@@ -56,7 +56,8 @@ try {
                 <th>名前</th>
                 <th>状態</th>
                 <th>日時</th>
-                <th>編集・削除</th>
+                <th>削除日時</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -85,6 +86,7 @@ try {
                     </small>
                 </td>
                 <td><?php echo htmlspecialchars($log['打刻日']); ?></td>
+                <td><?php echo htmlspecialchars($log['削除された日時']); ?></td>
 
                 <td class="btn"> 
                     <!-- <a class="edit" href="edit.php?user_id=<?php echo $log['user_id']; ?>&date=<?php echo $log['打刻日']; ?>">編集</a> -->
