@@ -17,7 +17,7 @@ try{
 $sql_check = "SELECT COUNT(*) FROM attendance_logs
               WHERE user_id = :user_id
               AND DATE(punched_at) = :date
-              AND deleted_at IS NOT NULL";
+              AND deleted_at IS NULL";
 
 $stmt =$pdo->prepare($sql_check);
 $stmt->execute([
@@ -29,8 +29,10 @@ $activeCount = $stmt->fetchColumn();
 // すでに有効なデータがある場合は、重複を避けるために復元をブロックする
 if ($activeCount > 0) {
     $_SESSION['error'] = "この日にはすでに新しい有効な打刻データが存在しています。重複を防ぐため、復元できません。";
-    header("Location: admin_dashboard.php"); 
+    header("Location: admin_dashboard.php");
+    exit; 
 }
+
 
     // 問題なければdeleted_atをnullにして戻す
     $sql = "UPDATE attendance_logs

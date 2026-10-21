@@ -62,7 +62,7 @@ function isValidTimeRange($date, $check_in, $check_out) {
 function displayErrorMessage() {
     if (isset($_SESSION['error'])) {
         // HTMLに返す
-        $error = htmlspecialchars($_SESSION['error']);
+        $error = htmlspecialchars($_SESSION['error'], ENT_QUOTES, "UTF-8");
         echo "<p style='color: red; font-weight: bold;'>{$error}</p>";
         
         // 一度表示したら次は出ないように消す

@@ -39,6 +39,7 @@ try {
 <body>
     <div class="head">
         <h1>管理者ダッシュボード</h1>
+        <?php displayErrorMessage(); ?>
         <?php if (isset($_GET['message']) && $_GET['message'] === 'deleted'): ?>
         <p style="color: red; font-weight: bold;">データを削除しました。</p>
         <?php endif; ?>
