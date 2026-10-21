@@ -33,7 +33,6 @@ if ($activeCount > 0) {
     exit; 
 }
 
-
     // 問題なければdeleted_atをnullにして戻す
     $sql = "UPDATE attendance_logs
             SET deleted_at = NULL
