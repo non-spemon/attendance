@@ -7,9 +7,10 @@ checkAdmin();
 // POSTで送られてきた「ユーザーID」と「日付」を取得
 $user_id = $_POST['user_id'] ?? null;
 $date = $_POST['date'] ?? null;
+$deleted_at = $_POST['deleted_at'] ?? null;
 
-// 両方のデータがない場合はエラー
-if (!$user_id || !$date) {
+// フォームから送られたデータがない場合はエラー
+if (!$user_id || !$date || !$deleted_at) {
     exit('復元に必要な情報が不足しています。');
 }
 
@@ -38,12 +39,14 @@ if ($activeCount > 0) {
             SET deleted_at = NULL
             WHERE user_id = :user_id 
             AND DATE(punched_at) = :date
+            AND deleted_at = :deleted_at
             AND deleted_at IS NOT NULL";
             
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
         ':user_id' => $user_id,
-        ':date'    => $date
+        ':date'    => $date,
+        ':deleted_at' => $deleted_at
     ]);
 
     header('Location: admin_dashboard.php?message=restored');

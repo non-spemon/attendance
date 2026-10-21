@@ -9,18 +9,19 @@ checkAdmin();
 // データ取得
 $logs = []; 
 try {
-    $sql = "SELECT 
+     $sql = "SELECT 
                 users.id AS user_id,
                 users.name AS 名前,
                 DATE(attendance_logs.punched_at) AS 打刻日,
+                attendance_logs.deleted_at AS 削除された日時,
                 -- 出勤時間を探して抽出
                 MIN(CASE WHEN attendance_logs.status = 'check-in' THEN attendance_logs.punched_at END) AS 出勤時間,
                 -- 退勤時間を探して抽出
                 MAX(CASE WHEN attendance_logs.status = 'check-out' THEN attendance_logs.punched_at END) AS 退勤時間
             FROM attendance_logs
             JOIN users ON attendance_logs.user_id = users.id
-            WHERE attendance_logs.deleted_at -- 削除されているものに絞る
-            GROUP BY user_id, 打刻日 -- ユーザーごと、日付ごとにまとめる
+            WHERE attendance_logs.deleted_at IS NOT NULL -- 削除されているものに絞る
+            GROUP BY user_id, 打刻日, attendance_logs.deleted_at -- ユーザー、打刻日、削除日でまとめる
             ORDER BY 打刻日 DESC, 出勤時間 DESC";
 
     $stmt = $pdo->query($sql);
@@ -46,8 +47,7 @@ try {
         <?php if (isset($_GET['message']) && $_GET['message'] === 'success'): ?>
             <p style="color: green; font-weight: bold;">データを更新しました。</p>
         <?php endif; ?>
-        <a class="user_btn" href="user_list.php">スタッフ一覧</a>
-        <a class="logout_btn_d" href="logout.php">ログアウト</a>
+        <a class="user_btn" href="admin_dashboard.php">戻る</a>
     </div>
     <div class="table-container">
     <table >
@@ -93,6 +93,8 @@ try {
                         <input type="hidden" name="user_id" value="<?php echo $log['user_id']; ?>">
                         <!-- 打刻日（date）を送る -->
                         <input type="hidden" name="date" value="<?php echo $log['打刻日']; ?>">
+                        <!-- 削除日時（deleted_at）送る -->
+                        <input type="hidden" name="deleted_at" value="<?php echo $log['削除された日時']; ?>">
                         <button type="submit" class="delete">復元</button>
                     </form>
                 </td>
