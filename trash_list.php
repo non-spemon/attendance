@@ -40,6 +40,7 @@ try {
 <body>
     <div class="head">
         <h1>ゴミ箱</h1>
+        <?php displayErrorMessage(); ?>
         <?php if (isset($_GET['message']) && $_GET['message'] === 'deleted'): ?> 
         <p style="color: red; font-weight: bold;">データを削除しました。</p>
         <?php endif; ?> 
@@ -62,7 +63,7 @@ try {
         </thead>
         <tbody>
             <?php if (empty($logs)): ?>
-                <tr><td colspan="4">データがありません。</td></tr>
+                <tr><td colspan="5">データがありません。</td></tr>
             <?php else: ?>
                 <?php foreach ($logs as $log): ?>
                     

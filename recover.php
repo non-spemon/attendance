@@ -49,8 +49,18 @@ if ($activeCount > 0) {
         ':deleted_at' => $deleted_at
     ]);
 
+    $recoverCount = $stmt->rowCount();
+
+    // 更新件数が0件（＝すでに別タブ等で復元されていた）の場合
+    if ($recoverCount === 0) {
+        $_SESSION['error'] = "この打刻はすでに復元されています。";
+        header("Location: trash_list.php");
+        exit;
+    }
+
     header('Location: admin_dashboard.php?message=restored');
     exit;
+
 
 } catch (PDOException $e) {
     handle_error('復元エラーが発生しました。：' . $e->getMessage());
