@@ -12,6 +12,7 @@ $userId = $_SESSION['user_id'];
 try {
     $sql_check = "SELECT status FROM attendance_logs
                   WHERE user_id = :user_id
+                  AND attendance_logs.deleted_at IS NULL -- 削除されていないものに絞る
                   ORDER BY punched_at DESC LIMIT 1";
     $stmt_check = $pdo->prepare($sql_check);
     $stmt_check->execute([':user_id' => $userId]);

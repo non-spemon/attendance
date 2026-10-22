@@ -42,6 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 WHERE user_id = :user_id 
                 AND DATE(punched_at) = :old_date 
                 AND status = 'check-in'
+                AND attendance_logs.deleted_at IS NULL
             ");
             $stmt->execute([
                 ':new_punched' => $new_date . ' ' . $check_in_time . ':00',
@@ -58,12 +59,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 WHERE user_id = :user_id 
                 AND DATE(punched_at) = :old_date 
                 AND status = 'check-out'
+                AND attendance_logs.deleted_at IS NULL
             ");
             $stmt->execute([
                 ':new_punched' => $new_date . ' ' . $check_out_time . ':00',
                 ':user_id' => $user_id,
                 ':old_date' => $original_date
             ]);
+
+            /*$updateCount = $stmt ->rowCount();
+
+        if ($updateCount === 0){
+            $stmt = $pdo->prepare("
+                    INSERT INTO attendance_logs (user_id, punched_at, status) 
+                    VALUES (:user_id, :new_punched, 'check-out')
+                ");
+                $stmt->execute([
+                    ':user_id' => $user_id,
+                    ':new_punched' => $new_date . ' ' . $check_out_time . ':00'
+                ]);
+        }*/
         }
 
         $pdo->commit(); // すべて成功したら確定
