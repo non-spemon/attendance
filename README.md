@@ -18,7 +18,7 @@
 
 **使用技術**　　
 
-PHP 8.x / MySQL / JavaScript / CSS (Flexbox) / XAMPP / GitHub Actions (CI/CD) / エックスサーバ<br>
+PHP 8.3.36 / MySQL / JavaScript / CSS (Flexbox) / XAMPP / GitHub Actions (CI/CD) / エックスサーバ<br>
 
 ## 実装画面
 ### 一般ユーザーの打刻画面と管理者画面
@@ -73,10 +73,10 @@ CRUD機能を網羅し、PDOを用いた安全なデータベース操作を実�
 
 
 ## ER図
-<img width="891" height="241" alt="勤怠管理ER drawio" src="https://github.com/user-attachments/assets/cf154653-86f0-450f-97a7-e31612cf9977" />
+<img width="891" height="241" alt="勤怠管理ER drawio" src="img/ER.png">
 
 ## フロー図
-<img width="3152" height="1953" alt="_フローチャート (4)" src="https://github.com/user-attachments/assets/9e5ccedc-4cb3-4f2c-8f89-56b5018c98c6" />
+<img width="3152" height="1953" alt="_フローチャート (4)" src="img/flow.jpg" />
 
 
 
