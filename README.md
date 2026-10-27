@@ -73,7 +73,7 @@ CRUD機能を網羅し、PDOを用いた安全なデータベース操作を実�
 
 
 ## ER図
-<img width="891" height="241" alt="勤怠管理ER drawio" src="img/ER.png">
+<img alt="勤怠管理ER drawio" src="img/ER.png">
 
 ## フロー図
 <img width="3152" height="1953" alt="_フローチャート (4)" src="img/flow.jpg" />
