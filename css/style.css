@@ -84,7 +84,7 @@ body {
 
 
 /* スマホの時はコンテナの幅を広げる（50%だと細すぎるため） */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .container {
         width: 90%; /* スマホでは画面の9割を使う */
         padding: 20px;
