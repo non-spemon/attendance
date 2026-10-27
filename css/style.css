@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 * {
     padding: 0;
     margin: 0;
@@ -36,8 +37,6 @@ body {
     padding: 30px; 
     border: 1px solid #ddd; 
     background-color: #fff; 
-    
-    /* 右に0, 下に10px、ぼかし20px、透明度15% */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); 
 }
 
@@ -47,7 +46,7 @@ body {
     padding: 5px 10px;
 }
 
-.container  label {
+.container label {
     font-size: 2.0rem;
     font-weight: 500;
 }
@@ -62,14 +61,11 @@ body {
 .login_btn {
     display: block; 
     width: 120px;    
-    padding: 12px;  
     margin: 10px 8px;
-    cursor: pointer;
     color: #ffffff; 
     background-color: #808080; 
     border: none;      
     outline: none;     
-    display: block;
     padding: 15px 0;         
     font-size: 1.6rem;         
     line-height: 1; 
@@ -82,29 +78,14 @@ body {
     opacity: 1;
 }
 
-
-/* スマホの時はコンテナの幅を広げる（50%だと細すぎるため） */
-@media screen and (max-width: 768px) {
-    .container {
-        width: 90%; /* スマホでは画面の9割を使う */
-        padding: 20px;
-        margin: 20px auto;
-    }
-
-    .login_btn {
-        width: 15%;
-        height: auto;
-        padding: 10px 0;
-    }
-
 /*punch_screen.php*/
 .container_punch {
-        width: 50%;
-        height: auto;
-        margin: 0 auto;
-        padding: 30px; 
-        border: solid #38363a 2px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);  
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    padding: 30px; 
+    border: solid #38363a 2px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);  
 }
 
 .status p {
@@ -126,7 +107,7 @@ body {
 .out {
     padding: 10px 30px;
     margin-top: 10px;
-    border-radius: 6px;;
+    border-radius: 6px;
     background-color: #2492ad;
     color: white;
     cursor: pointer;
@@ -158,11 +139,12 @@ body {
     font-size: 2.8rem;
 }
 
-.head p{
+.head p {
     font-size: 1.5rem;
     font-weight: 500;
     margin-bottom: 10px;
 }
+
 /* 二つのボタンに共通する */
 .head .logout_btn_d,
 .head .user_btn,
@@ -180,7 +162,6 @@ body {
     vertical-align: middle; 
 }
 
-
 .head .user_btn {
     background-color: #228B22;
     border: 1px solid #228B22;
@@ -194,7 +175,7 @@ body {
     margin-left: 10px;
 }
 
-.trash_btn {
+.head .trash_btn {
     background-color: #8b2227;
     border: 1px solid #8b2227;
     color: white;
@@ -217,10 +198,10 @@ table th, table td {
     font-family: "Lato", sans-serif; 
 }
 
-th,td {
+th, td {
     border: 1px solid #dee2e6;
     padding: 12px;
-    text-align: left
+    text-align: left;
 }
 
 th {
@@ -317,7 +298,6 @@ form input[type="datetime-local"] {
     border-radius: 6px;
     background-color: #caad2b;
     border: 1px #caad2b solid;
-    border-radius: 6px;
     color: #FFF;
     font-weight: 400;
     font-size: 1.2rem;
@@ -329,7 +309,7 @@ form input[type="datetime-local"] {
     box-sizing: border-box;
 }
 
-/*   user_list.php   */
+/* user_list.php */
 .cancel,
 .insert_btn {
     display: inline-block;
@@ -355,17 +335,15 @@ form input[type="datetime-local"] {
     text-align: center;
 }
 
-/*  テーブルのスクロール  */
+/* テーブルのスクロール */
 .table-container {
     width: 100%;
     overflow-x: auto; 
     -webkit-overflow-scrolling: touch;
 }
-}
 
 /* --- レスポンシブ設定 (スマホ・タブレット用) --- */
 @media screen and (max-width: 768px) {
-    /* 1. 全体のコンテナ幅を広げる（50%だと狭すぎるため） */
     .container, .container_punch, table {
         width: 85% !important;
         margin: 10px auto;
@@ -380,18 +358,15 @@ form input[type="datetime-local"] {
     .head .user_btn, 
     .head .trash_btn,
     .head .logout_btn_d {
-        width: 50% !important; /* ボタンを横いっぱいに広げる */
+        width: 50% !important; 
         margin-left: 0 !important;
         margin-bottom: 10px;
     }
 
-
     .delete {
         margin: 0;
     }
-    
 
-    /* 3. フォントサイズの微調整 */
     html {
         font-size: 55%; 
     }
@@ -402,31 +377,28 @@ form input[type="datetime-local"] {
 }
 
 @media screen and (max-width: 480px) {
-    /* テーブル全体の余白を最小限にする */
     th, td {
-        padding: 8px 4px !important; /* 上下8px、左右4pxに減らす */
-        font-size: 1.2rem !important; /* 文字を少し小さくする */
+        padding: 8px 4px !important; 
+        font-size: 1.2rem !important; 
     }
 
-    /* 「編集」「削除」ボタンのサイズをスマホ用に最適化 */
     .edit, .delete {
-        width: 45px !important;  /* 幅を少し小さく */
+        width: 45px !important;  
         height: 28px !important;
         line-height: 28px !important;
         font-size: 1.1rem !important;
-        margin: 2px !important;  /* ボタン周りの隙間 */
-        display: inline-block !important; /* 横並びを維持 */
+        margin: 2px !important;  
+        display: inline-block !important; 
     }
 
     .table-container {
         width: 100%;
-        overflow-x: auto; /* はみ出したら横スクロール */
-        -webkit-overflow-scrolling: touch; /* 指での操作を滑らかにする */
+        overflow-x: auto; 
+        -webkit-overflow-scrolling: touch; 
     }
 
-    /* 権限の文字（管理者/一般）が改行されないようにする */
     td {
-        white-space: nowrap; /* 文字の途中で改行させない魔法の命令 */
+        white-space: nowrap; 
     }
 
     .head .user_btn, 
