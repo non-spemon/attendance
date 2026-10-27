@@ -195,7 +195,8 @@ body {
     margin-left: 10px;
 }
 
-.head .trash_btn {
+.head,
+.trash_btn {
     background-color: #8b2227;
     border: 1px solid #8b2227;
     color: white;
