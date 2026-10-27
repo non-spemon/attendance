@@ -90,7 +90,6 @@ body {
         padding: 20px;
         margin: 20px auto;
     }
-}
 
     .login_btn {
         width: 15%;
@@ -195,8 +194,7 @@ body {
     margin-left: 10px;
 }
 
-.head,
-.trash_btn {
+.head .trash_btn {
     background-color: #8b2227;
     border: 1px solid #8b2227;
     color: white;
@@ -362,6 +360,7 @@ form input[type="datetime-local"] {
     width: 100%;
     overflow-x: auto; 
     -webkit-overflow-scrolling: touch;
+}
 }
 
 /* --- レスポンシブ設定 (スマホ・タブレット用) --- */
